@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->menubar->hide();
+
+    makeTrayIcon();
 }
 
 //-----------------------------------------------------------------------------
@@ -25,8 +27,9 @@ MainWindow::~MainWindow()
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Alt && event->modifiers() == Qt::AltModifier) {
-        if(m_showMenu)
+        if(m_showMenu) {
             ui->menubar->hide();
+        }
         m_showMenu = !m_showMenu;
     }
     else {
@@ -36,6 +39,8 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     if(event->key() == Qt::Key_Escape) {
         if(ui->menubar->isVisible()) {
             ui->menubar->hide();
+        } else {
+            this->hide();
         }
     }
 
@@ -46,8 +51,9 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 void MainWindow::keyReleaseEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Alt) {
-        if(m_showMenu)
+        if(m_showMenu) {
             ui->menubar->show();
+        }
     } else {
         m_showMenu = false;
     }
@@ -76,4 +82,28 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
         m_position = event->globalPos();
 
     QMainWindow::mousePressEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+void MainWindow::makeTrayIcon()
+{
+    m_tray = new QSystemTrayIcon(this);
+    m_tray->setIcon(QIcon(":/icons/image/phonebook.png"));
+    m_tray->setToolTip("PhoneBook" "\n" "Телефонная книга");
+    m_tray->show();
+
+    connect(m_tray, &QSystemTrayIcon::activated, this, &MainWindow::trayActivated);
+}
+
+//-----------------------------------------------------------------------------
+void MainWindow::trayActivated(QSystemTrayIcon::ActivationReason reason)
+{
+    if(reason != QSystemTrayIcon::Trigger)
+        return;
+
+    if(this->isVisible()) {
+        this->hide();
+    } else {
+        this->show();
+    }
 }

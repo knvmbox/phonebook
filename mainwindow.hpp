@@ -2,6 +2,7 @@
 #define MAINWINDOW_HPP
 
 #include <QMainWindow>
+#include <QSystemTrayIcon>
 
 namespace Ui {
 class MainWindow;
@@ -22,7 +23,12 @@ protected:
     void mousePressEvent(QMouseEvent*) override;
 
 private:
+    void makeTrayIcon();
+    void trayActivated(QSystemTrayIcon::ActivationReason);
+
+private:
     Ui::MainWindow *ui;
+    QSystemTrayIcon *m_tray;
 
     QPoint m_position;
     bool m_showMenu;
