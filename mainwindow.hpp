@@ -23,7 +23,10 @@ protected:
     void mousePressEvent(QMouseEvent*) override;
 
 private:
+    bool isAltKeyPress(QKeyEvent *event);
     void makeTrayIcon();
+    void processAltKeyPress();
+    void processEscKeyPress();
     void trayActivated(QSystemTrayIcon::ActivationReason);
 
 private:

@@ -26,22 +26,15 @@ MainWindow::~MainWindow()
 //-----------------------------------------------------------------------------
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    if(event->key() == Qt::Key_Alt && event->modifiers() == Qt::AltModifier) {
-        if(m_showMenu) {
-            ui->menubar->hide();
-        }
-        m_showMenu = !m_showMenu;
+    if(isAltKeyPress(event)) {
+        processAltKeyPress();
     }
     else {
         m_showMenu = false;
     }
 
     if(event->key() == Qt::Key_Escape) {
-        if(ui->menubar->isVisible()) {
-            ui->menubar->hide();
-        } else {
-            this->hide();
-        }
+        processEscKeyPress();
     }
 
     QMainWindow::keyPressEvent(event);
@@ -85,6 +78,12 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 }
 
 //-----------------------------------------------------------------------------
+bool MainWindow::isAltKeyPress(QKeyEvent *event)
+{
+    return event->key() == Qt::Key_Alt && event->modifiers() == Qt::AltModifier;
+}
+
+//-----------------------------------------------------------------------------
 void MainWindow::makeTrayIcon()
 {
     m_tray = new QSystemTrayIcon(this);
@@ -93,6 +92,25 @@ void MainWindow::makeTrayIcon()
     m_tray->show();
 
     connect(m_tray, &QSystemTrayIcon::activated, this, &MainWindow::trayActivated);
+}
+
+//-----------------------------------------------------------------------------
+void MainWindow::processAltKeyPress()
+{
+    if(m_showMenu) {
+        ui->menubar->hide();
+    }
+    m_showMenu = !m_showMenu;
+}
+
+//-----------------------------------------------------------------------------
+void MainWindow::processEscKeyPress()
+{
+    if(ui->menubar->isVisible()) {
+        ui->menubar->hide();
+    } else {
+        this->hide();
+    }
 }
 
 //-----------------------------------------------------------------------------
