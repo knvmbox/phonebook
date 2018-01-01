@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>image/person.png</file>
+        <file>image/phone.png</file>
+        <file>image/phonebook.png</file>
+    </qresource>
+    <qresource prefix="/small_icons">
+        <file>image/small_person.png</file>
+        <file>image/small_phone.png</file>
+    </qresource>
+</RCC>
