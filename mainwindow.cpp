@@ -24,15 +24,19 @@ MainWindow::~MainWindow()
 //-----------------------------------------------------------------------------
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    if(event->key() == Qt::Key_Alt && event->modifiers() == Qt::AltModifier)
-    {
+    if(event->key() == Qt::Key_Alt && event->modifiers() == Qt::AltModifier) {
         if(m_showMenu)
             ui->menubar->hide();
         m_showMenu = !m_showMenu;
     }
-    else
-    {
+    else {
         m_showMenu = false;
+    }
+
+    if(event->key() == Qt::Key_Escape) {
+        if(ui->menubar->isVisible()) {
+            ui->menubar->hide();
+        }
     }
 
     QMainWindow::keyPressEvent(event);
@@ -41,13 +45,10 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 //-----------------------------------------------------------------------------
 void MainWindow::keyReleaseEvent(QKeyEvent *event)
 {
-    if(event->key() == Qt::Key_Alt)
-    {
+    if(event->key() == Qt::Key_Alt) {
         if(m_showMenu)
             ui->menubar->show();
-    }
-    else
-    {
+    } else {
         m_showMenu = false;
     }
 
@@ -57,8 +58,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
 //-----------------------------------------------------------------------------
 void MainWindow::mouseMoveEvent(QMouseEvent *event)
 {
-    if(event->buttons() == Qt::LeftButton)
-    {
+    if(event->buttons() == Qt::LeftButton) {
         QPoint pos = event->globalPos();
         QPoint diff = pos - m_position;
 
