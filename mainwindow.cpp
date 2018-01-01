@@ -1,6 +1,7 @@
 #include <QDebug>
 #include <QKeyEvent>
 
+#include "include/uglobalhotkeys.h"
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
 
@@ -14,7 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->menubar->hide();
 
-    makeTrayIcon();
+    setupTrayIcon();
+    setupGlobalHotkey();
 
     connect(ui->hideAction, SIGNAL(triggered(bool)), this, SLOT(hide()));
     connect(ui->quitAction, SIGNAL(triggered(bool)), this, SLOT(close()));
@@ -87,17 +89,6 @@ bool MainWindow::isAltKeyPress(QKeyEvent *event)
 }
 
 //-----------------------------------------------------------------------------
-void MainWindow::makeTrayIcon()
-{
-    m_tray = new QSystemTrayIcon(this);
-    m_tray->setIcon(QIcon(":/icons/image/phonebook.png"));
-    m_tray->setToolTip("PhoneBook" "\n" "Телефонная книга");
-    m_tray->show();
-
-    connect(m_tray, &QSystemTrayIcon::activated, this, &MainWindow::trayActivated);
-}
-
-//-----------------------------------------------------------------------------
 void MainWindow::processAltKeyPress()
 {
     if(m_showMenu) {
@@ -114,6 +105,25 @@ void MainWindow::processEscKeyPress()
     } else {
         this->hide();
     }
+}
+
+//-----------------------------------------------------------------------------
+void MainWindow::setupGlobalHotkey()
+{
+    UGlobalHotkeys *hotkeyManager = new UGlobalHotkeys(this);
+    hotkeyManager->registerHotkey("Ctrl+Shift+F12");
+    connect(hotkeyManager, &UGlobalHotkeys::activated, [=](size_t) {   this->show();   });
+}
+
+//-----------------------------------------------------------------------------
+void MainWindow::setupTrayIcon()
+{
+    m_tray = new QSystemTrayIcon(this);
+    m_tray->setIcon(QIcon(":/icons/image/phonebook.png"));
+    m_tray->setToolTip("PhoneBook" "\n" "Телефонная книга");
+    m_tray->show();
+
+    connect(m_tray, &QSystemTrayIcon::activated, this, &MainWindow::trayActivated);
 }
 
 //-----------------------------------------------------------------------------

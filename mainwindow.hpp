@@ -24,9 +24,10 @@ protected:
 
 private:
     bool isAltKeyPress(QKeyEvent *event);
-    void makeTrayIcon();
     void processAltKeyPress();
     void processEscKeyPress();
+    void setupGlobalHotkey();
+    void setupTrayIcon();
     void trayActivated(QSystemTrayIcon::ActivationReason);
 
 private:
