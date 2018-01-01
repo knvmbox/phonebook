@@ -15,6 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menubar->hide();
 
     makeTrayIcon();
+
+    connect(ui->hideAction, SIGNAL(triggered(bool)), this, SLOT(hide()));
+    connect(ui->quitAction, SIGNAL(triggered(bool)), this, SLOT(close()));
 }
 
 //-----------------------------------------------------------------------------

@@ -151,16 +151,23 @@ color: rgb(255, 183, 77);</string>
    </property>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>&amp;File</string>
+     <string>Файл</string>
     </property>
-    <addaction name="action"/>
+    <addaction name="hideAction"/>
+    <addaction name="separator"/>
+    <addaction name="quitAction"/>
    </widget>
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action">
+  <action name="quitAction">
    <property name="text">
     <string>Выйти</string>
+   </property>
+  </action>
+  <action name="hideAction">
+   <property name="text">
+    <string>Свернуть</string>
    </property>
   </action>
  </widget>
