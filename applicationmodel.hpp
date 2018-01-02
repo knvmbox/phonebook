@@ -3,6 +3,7 @@
 
 #include <QList>
 #include <QObject>
+#include <QSqlDatabase>
 
 #include "person.hpp"
 
@@ -22,7 +23,11 @@ signals:
 public slots:
 
 private:
+    QString prepareSql(const QString&, const QString&);
+
+private:
     QList<Person> m_persons;
+    QSqlDatabase m_db;
 };
 
 #endif // APPLICATIONMODEL_HPP
