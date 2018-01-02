@@ -25,12 +25,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 linux: LIBS += "$$_PRO_FILE_PWD_/lib/libUGlobalHotkey.a"
 linux: LIBS += -lxcb -lxcb-keysyms
 
-SOURCES += main.cpp\
-        mainwindow.cpp
+SOURCES += \
+    abstractmodel.cpp \
+    applicationmodel.cpp \
+    main.cpp \
+    mainwindow.cpp \
+    personviewmodel.cpp
 
-HEADERS  += mainwindow.hpp
+HEADERS += \
+    abstractmodel.hpp \
+    applicationmodel.hpp \
+    mainwindow.hpp \
+    person.hpp \
+    personviewmodel.hpp
 
-FORMS    += mainwindow.ui
+FORMS += \
+    mainwindow.ui
 
 RESOURCES += \
     phonebook.qrc

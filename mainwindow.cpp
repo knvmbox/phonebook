@@ -3,6 +3,7 @@
 
 #include "include/uglobalhotkeys.h"
 #include "mainwindow.hpp"
+#include "personviewmodel.hpp"
 #include "ui_mainwindow.h"
 
 
@@ -10,7 +11,8 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    m_showMenu(false)
+    m_showMenu(false),
+    m_model(new ApplicationModel)
 {
     ui->setupUi(this);
     ui->menubar->hide();
@@ -18,8 +20,12 @@ MainWindow::MainWindow(QWidget *parent) :
     setupTrayIcon();
     setupGlobalHotkey();
 
+    ui->peopleView->setModel(new PersonViewModel(m_model.get(), ui->peopleView));
+
     connect(ui->hideAction, SIGNAL(triggered(bool)), this, SLOT(hide()));
     connect(ui->quitAction, SIGNAL(triggered(bool)), this, SLOT(close()));
+    connect(ui->lastnameEdit, &QLineEdit::textEdited, this, &MainWindow::lastnameEdited);
+    connect(ui->phoneEdit, &QLineEdit::textEdited, this, &MainWindow::phoneEdited);
 }
 
 //-----------------------------------------------------------------------------
@@ -86,6 +92,18 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 bool MainWindow::isAltKeyPress(QKeyEvent *event)
 {
     return event->key() == Qt::Key_Alt && event->modifiers() == Qt::AltModifier;
+}
+
+//-----------------------------------------------------------------------------
+void MainWindow::lastnameEdited(const QString &text)
+{
+    m_model->findPerson(text, ui->phoneEdit->text());
+}
+
+//-----------------------------------------------------------------------------
+void MainWindow::phoneEdited(const QString &text)
+{
+    m_model->findPerson(ui->lastnameEdit->text(), text);
 }
 
 //-----------------------------------------------------------------------------

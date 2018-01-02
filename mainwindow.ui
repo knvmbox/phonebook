@@ -131,7 +131,14 @@ color: rgb(255, 183, 77);</string>
     <item>
      <widget class="QTableView" name="peopleView">
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(66, 66, 66);</string>
+       <string notr="true">background-color: rgb(66, 66, 66);
+color: rgb(255, 183, 77);</string>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="tabKeyNavigation">
+       <bool>false</bool>
       </property>
      </widget>
     </item>
