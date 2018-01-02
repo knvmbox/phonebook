@@ -25,7 +25,7 @@ QVariant PersonViewModel::displayData(const QModelIndex &index) const
 
     switch(index.column()) {
     case 0:
-        return m_data[index.row()].lastname;
+        return m_data[index.row()].shortName();
     case 1:
         return m_data[index.row()].depatment;
     case 2:

@@ -15,6 +15,13 @@ struct Person
 
     QString phone;
     QString mobilePhone;
+
+    QString shortName() const {
+        return QString("%1%2%3")
+            .arg(lastname)
+            .arg(firstname.isEmpty() ? "" : QString(" %1.").arg(firstname[0]))
+            .arg(middlename.isEmpty() ? "" : QString("%1.").arg(middlename[0]));
+    }
 };
 
 #endif // PERSON_HPP
