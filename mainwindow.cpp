@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menubar->hide();
 
     setupTrayIcon();
-    setupGlobalHotkey();
+    //setupGlobalHotkey();          //TODO: uncomment when fix main menu
 
     ui->peopleView->setModel(new PersonViewModel(m_model.get(), ui->peopleView));
 
