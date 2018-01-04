@@ -27,13 +27,13 @@ QVariant PersonViewModel::displayData(const QModelIndex &index) const
     case 0:
         return m_data[index.row()].shortName();
     case 1:
-        return m_data[index.row()].depatment;
+        return m_data[index.row()].depatment();
     case 2:
-        return m_data[index.row()].room;
+        return m_data[index.row()].room();
     case 3:
-        return m_data[index.row()].phone;
+        return m_data[index.row()].phone();
     case 4:
-        return m_data[index.row()].mobilePhone;
+        return m_data[index.row()].mobilePhone();
     }
 
     return QVariant();

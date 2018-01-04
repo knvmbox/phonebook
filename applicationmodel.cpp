@@ -20,7 +20,7 @@ ApplicationModel::ApplicationModel() : QObject()
 //-----------------------------------------------------------------------------
 void ApplicationModel::findPerson(const QString &lastname_, const QString &phone_)
 {
-    QString lastname = lastname_.simplified();
+    QString lastname = lastname_.simplified().toLower();
     QString phone = phone_.simplified();
 
 
@@ -31,15 +31,16 @@ void ApplicationModel::findPerson(const QString &lastname_, const QString &phone
         q.exec();
 
         while(q.next()) {
-            Person p = {
-                q.value(0).toString(),
-                q.value(1).toString(),
-                q.value(2).toString(),
-                q.value(3).toString(),
-                q.value(4).toString(),
-                q.value(5).toString(),
-                q.value(6).toString()
-            };
+
+            Person p = PersonBuilder()
+                .withFirstname(q.value(0).toString())
+                .withMiddlename(q.value(1).toString())
+                .withLastname(q.value(2).toString())
+                .withDepartment(q.value(3).toString())
+                .withRoom(q.value(4).toString())
+                .withPhone(q.value(5).toString())
+                .withMobilephone(q.value(6).toString())
+                .build();
             m_persons.append(p);
         }
     }

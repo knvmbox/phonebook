@@ -30,6 +30,7 @@ SOURCES += \
     applicationmodel.cpp \
     main.cpp \
     mainwindow.cpp \
+    person.cpp \
     personviewmodel.cpp
 
 HEADERS += \
