@@ -1,5 +1,7 @@
 #include <QDebug>
+#include <QFileDialog>
 #include <QKeyEvent>
+#include <QMessageBox>
 
 #include "include/uglobalhotkeys.h"
 #include "mainwindow.hpp"
@@ -24,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->hideAction, SIGNAL(triggered(bool)), this, SLOT(hide()));
     connect(ui->quitAction, SIGNAL(triggered(bool)), this, SLOT(close()));
+    connect(ui->importDataAction, SIGNAL(triggered(bool)), this, SLOT(importData()));
     connect(ui->lastnameEdit, &QLineEdit::textEdited, this, &MainWindow::lastnameEdited);
     connect(ui->phoneEdit, &QLineEdit::textEdited, this, &MainWindow::phoneEdited);
 }
@@ -86,6 +89,24 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
         m_position = event->globalPos();
 
     QMainWindow::mousePressEvent(event);
+}
+
+//-----------------------------------------------------------------------------
+void MainWindow::importData()
+{
+    QString filename = QFileDialog::getOpenFileName(
+        this, tr("Импорт данных"),
+        ".",
+        tr("Данные (*.csv)")
+    );
+    if(filename.isEmpty())
+        return;
+
+    try {
+        m_model->importData(filename);
+    } catch (std::runtime_error &e) {
+        QMessageBox::critical(this, tr("Импорт данных"), e.what());
+    }
 }
 
 //-----------------------------------------------------------------------------

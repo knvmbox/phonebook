@@ -13,7 +13,7 @@ ApplicationModel::ApplicationModel() : QObject()
     m_db.setDatabaseName("db/phonebook.db");
 
     if (!m_db.open()) {
-        throw std::runtime_error("Can't open database");
+        throw std::runtime_error("Не удалось открыть базу данных");
     }
 }
 
@@ -31,7 +31,6 @@ void ApplicationModel::findPerson(const QString &lastname_, const QString &phone
         q.exec();
 
         while(q.next()) {
-
             Person p = PersonBuilder()
                 .withFirstname(q.value(0).toString())
                 .withMiddlename(q.value(1).toString())
@@ -46,6 +45,12 @@ void ApplicationModel::findPerson(const QString &lastname_, const QString &phone
     }
 
     emit dataChanged();
+}
+
+//-----------------------------------------------------------------------------
+void ApplicationModel::importData(const QString&)
+{
+    throw std::runtime_error("Импорт данных нереализован");
 }
 
 //-----------------------------------------------------------------------------

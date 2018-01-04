@@ -27,6 +27,9 @@ protected:
     void mouseMoveEvent(QMouseEvent*) override;
     void mousePressEvent(QMouseEvent*) override;
 
+private slots:
+    void importData();
+
 private:
     bool isAltKeyPress(QKeyEvent *event);
     void lastnameEdited(const QString&);

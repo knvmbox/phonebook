@@ -8,6 +8,7 @@
 #include "person.hpp"
 
 
+///////////////////////////////////////////////////////////////////////////////
 class ApplicationModel : public QObject
 {
     Q_OBJECT
@@ -16,6 +17,7 @@ public:
 
     const QList<Person>& data();
     void findPerson(const QString&, const QString&);
+    void importData(const QString&);
 
 signals:
     void dataChanged();
