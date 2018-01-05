@@ -28,6 +28,8 @@ linux: LIBS += -lxcb -lxcb-keysyms
 SOURCES += \
     abstractmodel.cpp \
     applicationmodel.cpp \
+    csvdataimporter.cpp \
+    csvreader.cpp
     main.cpp \
     mainwindow.cpp \
     person.cpp \
@@ -36,6 +38,9 @@ SOURCES += \
 HEADERS += \
     abstractmodel.hpp \
     applicationmodel.hpp \
+    csvdataimporter.hpp \
+    csvreader.hpp
+    dataimporter.hpp \
     mainwindow.hpp \
     person.hpp \
     personviewmodel.hpp

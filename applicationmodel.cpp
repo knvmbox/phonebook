@@ -1,9 +1,11 @@
+#include <memory>
 #include <stdexcept>
 
 #include <QSqlQuery>
 #include <QVariant>
 
 #include "applicationmodel.hpp"
+#include "csvdataimporter.hpp"
 
 
 //-----------------------------------------------------------------------------
@@ -48,9 +50,13 @@ void ApplicationModel::findPerson(const QString &lastname_, const QString &phone
 }
 
 //-----------------------------------------------------------------------------
-void ApplicationModel::importData(const QString&)
+void ApplicationModel::importData(const QString &filename)
 {
-    throw std::runtime_error("Импорт данных нереализован");
+    m_persons.clear();
+    emit dataChanged();
+
+    std::unique_ptr<DataImporter> importer(new CsvDataImporter(m_db, filename));
+    importer->importData();
 }
 
 //-----------------------------------------------------------------------------

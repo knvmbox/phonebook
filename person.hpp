@@ -1,6 +1,7 @@
 #ifndef __PERSON_HPP__
 #define __PERSON_HPP__
 
+#include <QDebug>
 #include <QString>
 
 
@@ -13,21 +14,24 @@ class Person
     friend PersonBuilder;
 
 public:
-    QString firstname() const
+    Person()
+        {   qDebug() <<"Person constructor";   }
+
+    const QString& firstname() const
         {   return m_firstname;   }
-    QString middlename() const
+    const QString& middlename() const
         {   return m_middlename;   }
-    QString lastname() const
+    const QString& lastname() const
         {   return m_lastname;   }
 
-    QString depatment() const
+    const QString& depatment() const
         {   return m_depatment;   }
-    QString room() const
+    const QString& room() const
         {   return m_room;   }
 
-    QString phone() const
+    const QString& phone() const
         {   return m_phone;   }
-    QString mobilePhone() const
+    const QString& mobilePhone() const
         {   return m_mobilePhone;   }
 
     QString shortName() const;
@@ -48,6 +52,9 @@ private:
 class PersonBuilder
 {
 public:
+    PersonBuilder()
+        {   qDebug() <<"PersonBuilder constructor";   }
+
     Person build()
         {   return m_person;   }
 
