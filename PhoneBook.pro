@@ -27,6 +27,7 @@ SOURCES += \
     applicationmodel.cpp \
     csvdataimporter.cpp \
     csvreader.cpp \
+    dialog/aboutdlg.cpp \
     main.cpp \
     mainwindow.cpp \
     person.cpp \
@@ -38,11 +39,13 @@ HEADERS += \
     csvdataimporter.hpp \
     csvreader.hpp \
     dataimporter.hpp \
+    dialog/aboutdlg.hpp \
     mainwindow.hpp \
     person.hpp \
     personviewmodel.hpp
 
 FORMS += \
+    dialog/aboutdlg.ui \
     mainwindow.ui
 
 RESOURCES += \

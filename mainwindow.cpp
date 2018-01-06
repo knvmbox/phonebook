@@ -4,6 +4,7 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 
+#include "dialog/aboutdlg.hpp"
 #include "mainwindow.hpp"
 #include "personviewmodel.hpp"
 #include "ui_mainwindow.h"
@@ -115,11 +116,8 @@ void MainWindow::importData()
 //-----------------------------------------------------------------------------
 void MainWindow::showAbout()
 {
-    QMessageBox::information(
-        this,
-        this->windowTitle(),
-        "Простая программа - телефонный справочник"
-    );
+    AboutDlg about;
+    about.exec();
 }
 
 //-----------------------------------------------------------------------------
