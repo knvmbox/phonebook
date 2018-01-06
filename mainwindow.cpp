@@ -102,6 +102,7 @@ void MainWindow::importData()
 
     try {
         m_model->importData(filename);
+        QMessageBox::information(this, tr("Импорт данных"), "Импорт данных завершен");
     } catch (std::runtime_error &e) {
         QMessageBox::critical(this, tr("Импорт данных"), e.what());
     }
