@@ -140,6 +140,15 @@ color: rgb(255, 183, 77);</string>
       <property name="tabKeyNavigation">
        <bool>false</bool>
       </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::ExtendedSelection</enum>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::SolidLine</enum>
+      </property>
      </widget>
     </item>
    </layout>
