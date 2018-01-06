@@ -14,9 +14,6 @@ class Person
     friend PersonBuilder;
 
 public:
-    Person()
-        {   qDebug() <<"Person constructor";   }
-
     const QString& firstname() const
         {   return m_firstname;   }
     const QString& middlename() const
@@ -52,9 +49,6 @@ private:
 class PersonBuilder
 {
 public:
-    PersonBuilder()
-        {   qDebug() <<"PersonBuilder constructor";   }
-
     Person build()
         {   return m_person;   }
 
