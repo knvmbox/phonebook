@@ -29,7 +29,7 @@ SOURCES += \
     abstractmodel.cpp \
     applicationmodel.cpp \
     csvdataimporter.cpp \
-    csvreader.cpp
+    csvreader.cpp \
     main.cpp \
     mainwindow.cpp \
     person.cpp \
@@ -39,7 +39,7 @@ HEADERS += \
     abstractmodel.hpp \
     applicationmodel.hpp \
     csvdataimporter.hpp \
-    csvreader.hpp
+    csvreader.hpp \
     dataimporter.hpp \
     mainwindow.hpp \
     person.hpp \
