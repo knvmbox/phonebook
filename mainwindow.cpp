@@ -3,7 +3,6 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 
-#include "include/uglobalhotkeys.h"
 #include "mainwindow.hpp"
 #include "personviewmodel.hpp"
 #include "ui_mainwindow.h"
@@ -20,7 +19,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menubar->hide();
 
     setupTrayIcon();
-    //setupGlobalHotkey();          //TODO: uncomment when fix main menu
 
     ui->peopleView->setModel(new PersonViewModel(m_model.get(), ui->peopleView));
 
@@ -144,14 +142,6 @@ void MainWindow::processEscKeyPress()
     } else {
         this->hide();
     }
-}
-
-//-----------------------------------------------------------------------------
-void MainWindow::setupGlobalHotkey()
-{
-    UGlobalHotkeys *hotkeyManager = new UGlobalHotkeys(this);
-    hotkeyManager->registerHotkey("Ctrl+Shift+F12");
-    connect(hotkeyManager, &UGlobalHotkeys::activated, [=](size_t) {   this->show();   });
 }
 
 //-----------------------------------------------------------------------------

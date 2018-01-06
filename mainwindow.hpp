@@ -36,7 +36,6 @@ private:
     void phoneEdited(const QString&);
     void processAltKeyPress();
     void processEscKeyPress();
-    void setupGlobalHotkey();
     void setupTrayIcon();
     void trayActivated(QSystemTrayIcon::ActivationReason);
 
