@@ -173,7 +173,6 @@ color: rgb(255, 183, 77);</string>
    <addaction name="menu"/>
    <addaction name="settingsMenu"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="quitAction">
    <property name="text">
     <string>Выйти</string>
