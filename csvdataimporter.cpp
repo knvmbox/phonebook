@@ -50,9 +50,9 @@ void CsvDataImporter::insertPerson(const Person &p)
     );
     QSqlQuery q(sql);
 
-    q.addBindValue(p.firstname());
-    q.addBindValue(p.middlename());
-    q.addBindValue(p.lastname());
+    q.addBindValue(p.firstname().toLower());
+    q.addBindValue(p.middlename().toLower());
+    q.addBindValue(p.lastname().toLower());
     q.addBindValue(p.depatment());
     q.addBindValue(p.room());
     q.addBindValue(p.phone());
