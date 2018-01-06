@@ -29,6 +29,7 @@ protected:
 
 private slots:
     void importData();
+    void showAbout();
 
 private:
     bool isAltKeyPress(QKeyEvent *event);

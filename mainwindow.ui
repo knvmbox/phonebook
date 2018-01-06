@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Телефонный справочник</string>
   </property>
   <property name="windowIcon">
    <iconset resource="phonebook.qrc">
@@ -170,8 +170,16 @@ color: rgb(255, 183, 77);</string>
     </property>
     <addaction name="importDataAction"/>
    </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+    <addaction name="aboutAction"/>
+    <addaction name="aboutQtAction"/>
+   </widget>
    <addaction name="menu"/>
    <addaction name="settingsMenu"/>
+   <addaction name="menu_2"/>
   </widget>
   <action name="quitAction">
    <property name="text">
@@ -186,6 +194,16 @@ color: rgb(255, 183, 77);</string>
   <action name="importDataAction">
    <property name="text">
     <string>Импорт данных</string>
+   </property>
+  </action>
+  <action name="aboutQtAction">
+   <property name="text">
+    <string>О &amp;Qt</string>
+   </property>
+  </action>
+  <action name="aboutAction">
+   <property name="text">
+    <string>О программе</string>
    </property>
   </action>
  </widget>

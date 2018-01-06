@@ -1,3 +1,4 @@
+#include <QApplication>
 #include <QDebug>
 #include <QFileDialog>
 #include <QKeyEvent>
@@ -25,6 +26,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->hideAction, SIGNAL(triggered(bool)), this, SLOT(hide()));
     connect(ui->quitAction, SIGNAL(triggered(bool)), this, SLOT(close()));
     connect(ui->importDataAction, SIGNAL(triggered(bool)), this, SLOT(importData()));
+    connect(ui->aboutAction, SIGNAL(triggered(bool)), this, SLOT(showAbout()));
+    connect(ui->aboutQtAction, SIGNAL(triggered(bool)), qApp, SLOT(aboutQt()));
+
     connect(ui->lastnameEdit, &QLineEdit::textEdited, this, &MainWindow::lastnameEdited);
     connect(ui->phoneEdit, &QLineEdit::textEdited, this, &MainWindow::phoneEdited);
 }
@@ -106,6 +110,16 @@ void MainWindow::importData()
     } catch (std::runtime_error &e) {
         QMessageBox::critical(this, tr("Импорт данных"), e.what());
     }
+}
+
+//-----------------------------------------------------------------------------
+void MainWindow::showAbout()
+{
+    QMessageBox::information(
+        this,
+        this->windowTitle(),
+        "Простая программа - телефонный справочник"
+    );
 }
 
 //-----------------------------------------------------------------------------
