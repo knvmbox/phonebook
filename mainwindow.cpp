@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setupTrayIcon();
 
     ui->peopleView->setModel(new PersonViewModel(m_model.get(), ui->peopleView));
+    ui->peopleView->horizontalHeader()->setStretchLastSection(true);
 
     connect(ui->hideAction, SIGNAL(triggered(bool)), this, SLOT(hide()));
     connect(ui->quitAction, SIGNAL(triggered(bool)), this, SLOT(close()));

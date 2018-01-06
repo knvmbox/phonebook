@@ -149,6 +149,9 @@ color: rgb(255, 183, 77);</string>
       <property name="gridStyle">
        <enum>Qt::SolidLine</enum>
       </property>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
      </widget>
     </item>
    </layout>
