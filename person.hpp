@@ -49,7 +49,7 @@ private:
 class PersonBuilder
 {
 public:
-    Person build()
+    const Person& build()
         {   return m_person;   }
 
     PersonBuilder& withFirstname(const QString &text);
